@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <p>Please wait...</p>
+        <p>Favor esperar...</p>
     </div>
 </div>
 <!-- #END# Page Loader -->
@@ -90,12 +90,27 @@
     <!-- /morphsearch-content -->
     <span class="morphsearch-close"></span>
 </div>
-
 <!-- Top Bar -->
+
 <nav class="navbar clearHeader">
-    <div class="col-12">
-        <div class="navbar-header"> <a href="javascript:void(0);" class="bars"></a> <a class="navbar-brand" href="index.php"><?php echo PRO_NAME ; ?></a> </div>
+  <div class="col-12">
+
+        <div class="navbar-header">
+          <a href="javascript:void(0);" class="bars"></a>
+          <a class="navbar-brand" href="index.php"><?php echo PRO_NAME ; ?></a>
+        </div>
+
         <ul class="nav navbar-nav navbar-right">
+          <li>
+            <div style="color:#fff;">
+              <ul class="nav navbar-nav navbar-left">
+                <li><a href="#"></a>Contactos</li>
+                <li><a href="#"></a>Empresas</li>
+                <li><a href="#"></a>Tareas</li>
+                <li><a href="#"></a></li>
+              </ul>
+            </div>
+          </li>
             <!-- Notifications -->
             <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i> <span class="label-count">7</span> </a>
                 <ul class="dropdown-menu">
@@ -206,7 +221,7 @@
         <!-- User Info -->
         <div class="user-info">
             <div class="admin-image"> <img src="../public/images/random-avatar7.jpg" alt=""> </div>
-            <div class="admin-action-info"> <span>Welcome</span>
+            <div class="admin-action-info"> <span>Bienvenido</span>
                 <h3>Prof. Ivan Roperto</h3>
                 <ul>
                     <li><a data-placement="bottom" title="Go to Inbox" href="mail-inbox.html"><i class="zmdi zmdi-email"></i></a></li>
@@ -336,7 +351,7 @@
     <aside id="rightsidebar" class="right-sidebar">
         <ul class="nav nav-tabs tab-nav-right" role="tablist">
             <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#chat">Chat</a></li>
-            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settings">Setting</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#settings">Configuración</a></li>
         </ul>
         <div role="tabpanel" class="tab-pane in active in active" id="chat">
                 <div class="demo-settings">
