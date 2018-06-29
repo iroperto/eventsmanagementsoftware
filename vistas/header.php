@@ -9,6 +9,10 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link href="../public/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+<!-- Datatables -->
+<link rel="stylesheet" href="..public/datatables/jquery.dataTables.min.css">
+<link rel="stylesheet" href="..public/datatables/buttons.dataTables.min.css">
+<link rel="stylesheet" href="..public/datatables/responsive.dataTables.min.css">
 <!-- Custom Css -->
 <link href="../public/css/main.css" rel="stylesheet">
 
