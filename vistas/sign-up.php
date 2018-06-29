@@ -73,10 +73,10 @@
             <div id="confirmaciones">
               <ul>
                 <li><i id="condicion1" class="far fa-circle"></i> Al menos 8 caracteres de longitud</li>
-                <li><i id="condicion2" class="far fa-circle"></i> Un caracter en minuscula</li>
-                <li><i id="condicion3" class="far fa-circle"></i> Un caracter en mayusculas</li>
+                <li><i id="condicion2" class="far fa-circle"></i> Un carácter en minúscula</li>
+                <li><i id="condicion3" class="far fa-circle"></i> Un carácter en mayúsculas</li>
                 <li><i id="condicion4" class="far fa-circle"></i> Un número</li>
-                <li><i id="condicion5" class="far fa-circle"></i> Un simbolo o caracter especial</li>
+                <li><i id="condicion5" class="far fa-circle"></i> Un símbolo o carácter especial</li>
               </ul>
             </div>
             <div class="form-group">
