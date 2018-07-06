@@ -15,6 +15,7 @@
 <link href="../public/css/login.css" rel="stylesheet">
 
 <link href="../public/css/themes/all-themes.css" rel="stylesheet" />
+<link rel="stylesheet" href="../public/plugins/toastr/toastr.min.css">
 <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
 <style>
   #confirmaciones li{
@@ -37,6 +38,9 @@
   .modal-footer .btn{
     color: #fff !important;
   }
+  .error-validacion::-webkit-input-placeholder {
+    color: #f00;
+}
 </style>
 </head>
 <body class="login-page authentication">
@@ -69,13 +73,10 @@
                     <i class="zmdi zmdi-email"></i>
                 </span>
                 <div class="form-line">
-                    <input type="email" class="form-control" name id="email" placeholder="Email">
+                    <input type="text" class="form-control" name id="email" placeholder="Email">
+                    <input type="hidden" name="emailValido" id="emailValido" value="no">
                 </div>
 
-            </div>
-            <div>
-              <a class="btn btn-success" onclick="emailExist('true')">Mostrar</a>
-              <a class="btn btn-danger" onclick="emailExist('false')">Ocultar</a>
             </div>
             <div id="mailexist" style="display: none;">
               Otra cuenta esta usando esta dirección de correo ¿Es tuya? <a href="sign-in.php">Iniciar sesión</a>
@@ -92,9 +93,11 @@
               <div class="col-md-6 input-group">
                 <div class="form-line">
                     <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirmar Password">
+                    <input type="hidden" name="validconfirm" id="validconfirm" value="no">
                 </div>
               </div>
             </div>
+
             <div id="confirmaciones">
               <ul>
                 <li><i id="condicion1" class="far fa-circle"></i> Al menos 8 caracteres de longitud</li>
@@ -128,7 +131,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <a href="#" class="btn btn-raised g-bg-blush2 waves-effect" >REGISTRAR</a>
+                <a href="#" class="btn btn-raised g-bg-blush2 waves-effect" onclick="toast_campos('Debe proporcionar su(s) nombre(s)','Nombre')" >REGISTRAR</a>
             </div>
             <div class="m-t-10 m-b--5 align-center">
                 <a href="sign-in.php">¿Tienes una cuenta?</a>
@@ -146,15 +149,6 @@
 <script src="scripts/sign_up.js">
 
 </script>
-<script type="text/javascript">
-function emailExist(cond) {
-  if (cond == 'true') {
-    $('#mailexist').show();
-  } else {
-    $('#mailexist').hide();
-  }
-  console.log(cond);
-}
-</script>
+<script type="text/javascript" src="../public/plugins/toastr/toastr.min.js"></script>
 </body>
 </html>

@@ -1,56 +1,116 @@
+function toast_campos (mensaje, campo) {
+    toastr.error(mensaje, campo);
+}
+
 $(document).ready(function() {
-  /*$("#sign_up").submit(function (event) {
-    if ((!$("#namesurname").length() < 4)) {
-      return;
-    }
-  });*/
-var sqlEmail ='';
+  var nameAllowed = 'false';
+  $( "form" ).submit(function( event ) {
+      if ((!($('#nombre') ==='')) && (!($("#nombre").val().length < 3)) && (!($('#apellido').val()==='')) && (!($("#apellido").val().length < 3)) && (!($('#email').val()==='')) && (!($('#emailValido').val() ==='no')) && (!($('#password').val()===''))&&(strength >= 5) && (!($('#confirm').val()==='')) && (!($('#validconfirm').val()==='no')) && (!(terminosAceptados==='no'))) {
+          return;
+      } else if ($('#nombre').val()==='') {
+          toast_campos('Debe proporcionar su(s) nombre(s)','Nombre');
+          $("#nombre").addClass('error-validacion');
+          $("#nombre").focus();
+          event.preventDefault();
+      }else if ($("#nombre").val().length < 3) {
+          toast_campos('El nombre debe tener al menos 3 caracteres','Nombre');
+          $("#nombre").focus();
+          $("#nombre").select();
+          event.preventDefault();
+      }else if ($('#apellido').val()==='') {
+          toast_campos('Debe proporcionar su(s) apellido(s)','Apellido');
+          $("#apellido").addClass('error-validacion');
+          $("#apellido").focus();
+          event.preventDefault();
+      }else if ($("#apellido").val().length < 3) {
+          toast_campos('El apellido debe tener al menos 3 caracteres','Apellido');
+          $("#apellido").focus();
+          $("#apellido").select();
+          event.preventDefault();
+      }else if ($('#email').val()==='') {
+          toast_campos('Debe ingresar el correo electronico','Email');
+          $("#email").addClass('error-validacion');
+          $("#email").focus();
+          event.preventDefault();
+      }else if ($('#emailValido').val() ==='no') {
+          toast_campos('Formato incorrecto o correo existente','Email');
+          $("#email").focus();
+          $("#email").select();
+          event.preventDefault();
+      }else if ($('#password').val()==='') {
+          toast_campos('Debe ingresar una contraseña','Password');
+          $("#password").addClass('error-validacion');
+          $("#password").focus();
+          event.preventDefault();
+      }else if (strength < 5) {
+          toast_campos('Contraseña no cumple con el minimo de seguridad establecido','Password');
+          $("#password").focus();
+          $("#password").select();
+          event.preventDefault();
+      }else if ($('#confirm').val()==='') {
+          toast_campos('Debe confirmar la contraseña','Password');
+          $("#confirm").addClass('error-validacion');
+          $("#confirm").focus();
+          event.preventDefault();
+      }else if ($('#validconfirm').val()==='no') {
+          toast_campos('Las contraseñas no coinciden','Password');
+          $("#confirm").focus();
+          $("#confirm").select();
+          event.preventDefault();
+      }else if (terminosAceptados==='no') {
+          toast_campos('Debe aceptar los terminos y condiciones de uso','Terminos');
+          event.preventDefault();
+      };
+  });
+  var terminosAceptados = 'no';
+
   $('#password').keyup(function() {
     var password = $('#password').val();
     checkStrength(password);
   });
 
-  $('#nombre').keyup(function () {
-    var nombre = $('#nombre').val().length;
-    var nameAllowed = checkName(nombre);
-    console.log(nameAllowed);
-  });
-
-  $('#apellido').keyup(function () {
-    var apellido = $('#apellido').val().length;
-    var apellidoAllowed = checkName(apellido);
-    console.log(apellidoAllowed);
-  });
-  $('#email').keyup(function () {
+  $('#email').keyup( function (e) {
     var mailcheck = $('#email').val();
-    validarEmail(mailcheck);
+      validarEmail(mailcheck);
   });
-
-function checkName(name) {
-
-  if (name > 2) {
-    var allowed = true;
-  } else {
-    var allowed = false;
-  }
-  return allowed;
-}
+  $('#confirm').keyup( function (e) {
+    checkConfirm();
+  });
+  $('#terms').click(function (e) {
+    terminosCond();
+  });
 
 function validarEmail(email) {
-  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-  if (emailReg.test(email)) {
-    $.post("../ajax/checkmail.php", {'email':email}, function (data){
-      sqlEmail = data.existe;
-    },"json");
-    if (sqlEmail == 'true') {
-      emailExist('true');
+  var largoEmail = email.length+1;
 
+  if (largoEmail > 1) {
+
+    var emailReg = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,10}$/i;
+    if (emailReg.test(email)) {
+
+      $.post("../ajax/checkmail.php", {'email':email}, function (data){
+        sqlEmail = data.existe;
+        if (sqlEmail == 'si') {
+            emailExist('true');
+          } else if (sqlEmail == 'no') {
+            emailExist('false');
+          }
+          return emailValido;
+      },"json");
     } else {
       emailExist('false');
+      $("#emailValido").val('no');
     }
+  }
+}
 
+function emailExist(cond) {
+  if (cond == 'true') {
+    $('#mailexist').show("fast");
+    $("#emailValido").val('no');
   } else {
-    emailExist('false');
+    $('#mailexist').hide("fast");
+    $("#emailValido").val('si');
   }
 }
 
@@ -99,5 +159,42 @@ function validarEmail(email) {
     }
   }
 
+  function checkConfirm() {
+    var pass = $('#password').val();
+    var confirm = $('#confirm').val();
 
+    if (pass == confirm) {
+      $("#validconfirm").val('si');
+    } else {
+      $("#validconfirm").val('no');
+    }
+
+  }
+
+  function terminosCond() {
+    if ($("#terms").is(':checked')) {
+      terminosAceptados = 'si';
+    } else {
+      terminosAceptados = 'no';
+    }
+}
+
+
+      toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
 });
