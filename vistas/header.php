@@ -13,7 +13,11 @@
 <link rel="stylesheet" href="..public/datatables/jquery.dataTables.min.css">
 <link rel="stylesheet" href="..public/datatables/buttons.dataTables.min.css">
 <link rel="stylesheet" href="..public/datatables/responsive.dataTables.min.css">
+<!-- Sweeet Alerts -->
+<link href="../public/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
 <!-- Custom Css -->
+
 <link href="../public/css/main.css" rel="stylesheet">
 
 <link href="../public/css/themes/all-themes.css" rel="stylesheet" />

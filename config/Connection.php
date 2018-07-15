@@ -41,5 +41,19 @@ if (!function_exists('ejecutarConsulta')) {
     $str = mysqli_real_escape_string($connection, trim($str));
     return htmlspecialchars($str);
   }
+
+  function BuscarExistencia($campoid,$tabla,$campo,$valor)
+  {
+    global $connection;
+    $sql = "SELECT $campoid FROM $tabla WHERE $campo = LOWER('$valor')";
+    $query = $connection->query($sql);
+    if ($query->num_rows == 0) {
+      $result = array('existe'=>'no');
+    } else {
+      $result = array('existe'=>'si');
+    }
+    return $result;
+
+  }
 }
 ?>
