@@ -16,4 +16,9 @@ define("DB_ENCODE", "utf8");
 
 //Nombre del proyecto
 define("PRO_NAME", "Morriseti");
+
+//Email de info
+define("MAIL_INFO", "info.morriseti@gmail.com");
+define('MAIL_INFO_PASS', 'Roperto@1976/');
+
 ?>
